@@ -1,0 +1,6 @@
+node_modules/
+envs.mjs
+backup-notas-sed-log-*
+nope.json
+logs/
+sheets/*
