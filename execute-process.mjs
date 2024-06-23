@@ -45,7 +45,7 @@ const executeProcess = async (clockButtonSelector, tries = 1) => {
     logger.info('Conseguimos recuperar as turmas');
     const gradesBySchool = {};
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < classes.length; i++) {
       const classRow = classes[i];
       let school;
       let className;
@@ -154,14 +154,9 @@ const executeProcess = async (clockButtonSelector, tries = 1) => {
     logger.info('Gerando planilhas');
     exportSheet(gradesBySchool);
   } catch (error) {
-    await browser.close();
     logger.error(`Erro batendo realizando backup, tentativa: ${tries}, ${error}`);
+    await browser.close().catch(() => {});
     if (tries < 5) return executeProcess(clockButtonSelector, tries + 1);
-  }
-
-  try {
-    await browser.close();
-  } catch (error) {
   }
 }
 

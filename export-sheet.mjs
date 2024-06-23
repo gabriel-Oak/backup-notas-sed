@@ -31,8 +31,6 @@ export default function exportSheet(data) {
           newStudent[grade.gradeName] = grade.grade;
         });
 
-        logger.info(JSON.stringify(newStudent));
-
         return newStudent;
       });
       const worksheet = XLSX.utils.json_to_sheet(sanitizedStudents, { header });
